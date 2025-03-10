@@ -17,17 +17,14 @@ class OrderController extends Controller
             'item' => 'required|string'
         ]);
 
-        // Save order
         $order = Order::create([
             'email' => $request->email,
             'name' => $request->name,
             'item' => $request->item
         ]);
 
-        // Save notification
         Notification::create(['title' => 'New order from ' . $request->name]);
 
-        // Send email
         Mail::raw("Your order for {$request->item} has been placed!", function ($message) use ($request) {
             $message->to($request->email)
                     ->subject("Order Confirmation");

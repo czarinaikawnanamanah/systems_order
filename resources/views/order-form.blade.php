@@ -20,5 +20,7 @@
 
         <button type="submit">Place Order</button>
     </form>
+    <form action="{{ route('order.store') }}" method="POST">
+
 </body>
 </html>
